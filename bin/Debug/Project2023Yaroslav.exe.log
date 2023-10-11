@@ -1,0 +1,228 @@
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0044330C в функции _M_is_leaked() в файле c:/codeblocks/mingw/include/c++/4.8.1/debug/functions.h на строке 45. Попытка прочесть данные по адресу 0x0000016E в модуле C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400], Instance: 0x004F62FC (32-bit), Flags: CMdRE0, Thread: 0x2DDC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0044330C in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: _M_is_leaked() at c:/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 1 0x004723FB in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: swap() at c:/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 2 0x00479DC9 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: operator=() at c:/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 3 0x0043DC36 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: operator=() at c:/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 4 0x0041DD11 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: main() at C:/Users/root/source/repos/Project2023Yaroslav/main.cpp (83):
+
+     81:     menu_pic[4] = {10, 400, 100, 100, txLoadImage ("Pictures/Эмблемы/Эмблема3.bmp"), 100, 100, false, "Эмблема"};
+     82:     menu_pic[5] = {10, 100, 100, 100, txLoadImage ("Pictures/Логотипы/logo1.bmp"), 100, 100, false, "Логотип"};
+=>   83:     menu_pic[6] = {10, 250, 100, 100, txLoadImage ("Pictures/Логотипы/logo2.bmp"), 100, 100, false, "Логотип"};
+     84:     menu_pic[7] = {10, 400, 100, 100, txLoadImage ("Pictures/Логотипы/logo3.bmp"), 100, 100, false, "Логотип"};
+     85:     menu_pic[8] = {10, 550, 100, 100, txLoadImage ("Pictures/Логотипы/logo4.bmp"), 100, 100, false, "Логотип"};
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\mingw\include\txlib.h
+Compiled:	Oct 11 2023 20:00:18, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Oct 11 2023 20:00:23
+
+Run file:	C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe
+Directory:	C:\Users\root\source\repos\Project2023Yaroslav
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0044330C в функции _M_is_leaked() в файле c:/codeblocks/mingw/include/c++/4.8.1/debug/functions.h на строке 45. Попытка прочесть данные по адресу 0x0000016E в модуле C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400], Instance: 0x004F62FC (32-bit), Flags: CMdRE0, Thread: 0x2DDC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0044330C in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: _M_is_leaked() at c:/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 1 0x004723FB in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: swap() at c:/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 2 0x00479DC9 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: operator=() at c:/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 3 0x0043DC36 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: operator=() at c:/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 4 0x0041DD11 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: main() at C:/Users/root/source/repos/Project2023Yaroslav/main.cpp (83):
+
+     81:     menu_pic[4] = {10, 400, 100, 100, txLoadImage ("Pictures/Эмблемы/Эмблема3.bmp"), 100, 100, false, "Эмблема"};
+     82:     menu_pic[5] = {10, 100, 100, 100, txLoadImage ("Pictures/Логотипы/logo1.bmp"), 100, 100, false, "Логотип"};
+=>   83:     menu_pic[6] = {10, 250, 100, 100, txLoadImage ("Pictures/Логотипы/logo2.bmp"), 100, 100, false, "Логотип"};
+     84:     menu_pic[7] = {10, 400, 100, 100, txLoadImage ("Pictures/Логотипы/logo3.bmp"), 100, 100, false, "Логотип"};
+     85:     menu_pic[8] = {10, 550, 100, 100, txLoadImage ("Pictures/Логотипы/logo4.bmp"), 100, 100, false, "Логотип"};
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\mingw\include\txlib.h
+Compiled:	Oct 11 2023 20:00:18, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Oct 11 2023 20:00:23
+
+Run file:	C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe
+Directory:	C:\Users\root\source\repos\Project2023Yaroslav
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe, файл: c:\codeblocks\mingw\include\txlib.h, строка: 10854, функция: bool {anonymous}::TX::_txBuffer_Delete(HDC__**),
+
+Сообщение: Параметр "*dc" неверен. Возможно, этот холст не создан, или уже уничтожен, или не загрузилась картинка.
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400], Instance: 0x004F62FC (32-bit), Flags: CMdRE0, Thread: 0x3B70 (Main), GetLastError(): 13 (Недопустимые данные). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0040A9D0 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: _txBuffer_Delete() at c:/codeblocks/mingw/include/txlib.h (10854)
+# 1 0x00416CF7 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: txDeleteDC() at c:/codeblocks/mingw/include/txlib.h (13597)
+# 2 0x00416E43 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: txDeleteDC() at c:/codeblocks/mingw/include/txlib.h (13619)
+
+# 3 0x0041E7A7 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: main() at C:/Users/root/source/repos/Project2023Yaroslav/main.cpp (159):
+
+    157:     for(int i=0; i<count_pic; i++)
+    158:     {
+=>  159:         txDeleteDC (centr_pic[i].pic);
+    160:     }
+    161: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\mingw\include\txlib.h
+Compiled:	Oct 11 2023 20:00:44, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Oct 11 2023 20:00:49
+
+Run file:	C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe
+Directory:	C:\Users\root\source\repos\Project2023Yaroslav
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe, файл: c:\codeblocks\mingw\include\txlib.h, строка: 10854, функция: bool {anonymous}::TX::_txBuffer_Delete(HDC__**),
+
+Сообщение: Параметр "*dc" неверен. Возможно, этот холст не создан, или уже уничтожен, или не загрузилась картинка.
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400], Instance: 0x004F62FC (32-bit), Flags: CMdRE0, Thread: 0x6360 (Main), GetLastError(): 13 (Недопустимые данные). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0040A9D0 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: _txBuffer_Delete() at c:/codeblocks/mingw/include/txlib.h (10854)
+# 1 0x00416CF7 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: txDeleteDC() at c:/codeblocks/mingw/include/txlib.h (13597)
+# 2 0x00416E43 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: txDeleteDC() at c:/codeblocks/mingw/include/txlib.h (13619)
+
+# 3 0x0041E7A7 in C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe: main() at C:/Users/root/source/repos/Project2023Yaroslav/main.cpp (159):
+
+    157:     for(int i=0; i<count_pic; i++)
+    158:     {
+=>  159:         txDeleteDC (centr_pic[i].pic);
+    160:     }
+    161: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2021-07-19 01:45:49 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\mingw\include\txlib.h
+Compiled:	Oct 11 2023 20:00:44, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Oct 11 2023 20:01:45
+
+Run file:	C:\Users\root\source\repos\Project2023Yaroslav\bin\Debug\Project2023Yaroslav.exe
+Directory:	C:\Users\root\source\repos\Project2023Yaroslav
+
+--------------------------------------------------
