@@ -64,6 +64,10 @@ txDisableAutoPause();
 
     int count_btn = 3;
     int count_pic = 9;
+    int vybor = -1;
+    bool mousefree = true;
+    char str[20];
+    int nCenrtPic = 0;
 
     //Область инициализации объектов
     //Кнопка
@@ -71,6 +75,7 @@ txDisableAutoPause();
     btn[0] = {30, "Вид одежды", "Одежда"};
     btn[1] = {200, "Эмблемы", "Эмблема"};
     btn[2] = {370, "Логотипы", "Логотип"};
+    btn[2] = {440, "Надписи", "Надписи"};
 
     //Картинка-меню
     Picture menu_pic[count_pic];
@@ -83,19 +88,10 @@ txDisableAutoPause();
     menu_pic[6] = {10, 250, 100, 100, txLoadImage ("Pictures/Логотипы/logo2.bmp"), 100, 100, false, "Логотип"};
     menu_pic[7] = {10, 400, 100, 100, txLoadImage ("Pictures/Логотипы/logo3.bmp"), 100, 100, false, "Логотип"};
     menu_pic[8] = {10, 550, 100, 100, txLoadImage ("Pictures/Логотипы/logo4.bmp"), 100, 100, false, "Логотип"};
+    menu_pic[9] = {10, 100, 100, 100, txLoadImage ("Pictures/Логотипы/logo4.bmp"), 350, 300, false, "Логотип"};
 
     //Картинка в центре
-    Picture centr_pic[count_pic];
-    centr_pic[0] = {430, 100, 470, 550, menu_pic[0].pic, menu_pic[0].w, menu_pic[0].h, false};
-    centr_pic[1] = {430, 100, 470, 550, menu_pic[1].pic, menu_pic[1].w, menu_pic[1].h, false};
-    centr_pic[2] = {600, 100, 100, 100, menu_pic[2].pic, menu_pic[2].w, menu_pic[2].h, false};
-    centr_pic[3] = {600, 200, 100, 100, menu_pic[3].pic, menu_pic[3].w, menu_pic[3].h, false};
-    centr_pic[4] = {600, 300, 100, 100, menu_pic[4].pic, menu_pic[4].w, menu_pic[4].h, false};
-    centr_pic[5] = {600, 400, 100, 100, menu_pic[5].pic, menu_pic[5].w, menu_pic[5].h, false};
-    centr_pic[6] = {600, 500, 100, 100, menu_pic[6].pic, menu_pic[6].w, menu_pic[6].h, false};
-    centr_pic[7] = {600, 600, 100, 100, menu_pic[7].pic, menu_pic[7].w, menu_pic[7].h, false};
-    centr_pic[8] = {700, 600, 100, 100, menu_pic[8].pic, menu_pic[8].w, menu_pic[8].h, false};
-
+    Picture centr_pic[100];
 
     while(!txGetAsyncKeyState (VK_ESCAPE))
     {
@@ -106,22 +102,26 @@ txDisableAutoPause();
 
         txBegin();
         //Область рисования
+        //Кнопки
         for(int i=0; i<count_btn; i++)
         {
             btn[i].draw();
         }
 
+        //Картинки меню
         for(int i=0; i<count_pic; i++)
         {
             menu_pic[i].draw();
         }
 
-        for(int i=0; i<count_pic; i++)
+        //Картинки в центре
+        for(int i=0; i<nCenrtPic; i++)
         {
             centr_pic[i].draw();
         }
 
         //Область взаимодействия
+        //Видимость картинок меню по категории
         for (int ib=0; ib<count_btn; ib++)
         {
             if(btn[ib].click())
@@ -137,15 +137,91 @@ txDisableAutoPause();
             }
         }
 
-
+        //Видимость картинок в центре
         for (int i=0; i<count_pic; i++)
         {
             if(menu_pic[i].click() && menu_pic[i].visible)
             {
-                centr_pic[i].visible = true;
+                while (txMouseButtons()==1)   txSleep(10);
+                centr_pic[nCenrtPic] = {200,
+                                        100,
+                                        menu_pic[i].w, menu_pic[i].h,
+                                        menu_pic[i].pic,
+                                        menu_pic[i].w, menu_pic[i].h,
+                                        menu_pic[i].visible};
+                nCenrtPic++;
             }
         }
 
+        //Выбор картинки в центре
+        for (int npic=0; npic<nCenrtPic; npic++)
+        {
+            if(centr_pic[npic].click() && centr_pic[npic].visible)
+            {
+                 vybor = npic;
+                 mousefree = false;
+            }
+
+        }
+
+        /*
+        sprintf(str, "Выбор =  %d", vybor);
+        txTextOut(10, 550, str);
+        sprintf(str, "nCenrtPic =  %d", nCenrtPic);
+        txTextOut(10, 600, str);
+        sprintf(str, "Ширина =  %d Высота = %d", centr_pic[vybor].w_scr, centr_pic[vybor].h_scr);
+        txTextOut(10, 600, str);
+        */
+
+        //Передвижение картинок в центре по клавишам и +/- размер
+        if(vybor>=0)
+        {
+            if(txGetAsyncKeyState (VK_UP))
+            {
+                centr_pic[vybor].y -= 3;
+            }
+            if(txGetAsyncKeyState (VK_DOWN))
+            {
+                centr_pic[vybor].y += 3;
+            }
+            if(txGetAsyncKeyState (VK_RIGHT))
+            {
+                centr_pic[vybor].x += 3;
+            }
+            if(txGetAsyncKeyState (VK_LEFT))
+            {
+                centr_pic[vybor].x -= 3;
+            }
+            if(txGetAsyncKeyState (VK_ADD) || txGetAsyncKeyState (VK_OEM_PLUS))
+            {
+                centr_pic[vybor].w_scr = centr_pic[vybor].w_scr*1.02;
+                centr_pic[vybor].h_scr = centr_pic[vybor].h_scr*1.02;
+            }
+            if(txGetAsyncKeyState (VK_SUBTRACT) || txGetAsyncKeyState (VK_OEM_MINUS))
+            {
+                centr_pic[vybor].w_scr = centr_pic[vybor].w_scr*0.98;
+                centr_pic[vybor].h_scr = centr_pic[vybor].h_scr*0.98;
+            }
+        }
+
+        //Передвижение картинок в центре мышкой
+        if(vybor>=0 && txMouseButtons() == 1 && !mousefree)
+        {
+            centr_pic[vybor].x = txMouseX() - centr_pic[vybor].w_scr/2;
+            centr_pic[vybor].y = txMouseY() - centr_pic[vybor].h_scr/2;
+        }
+        if(vybor>=0 && !txMouseButtons() == 1 && !mousefree)
+        {
+            mousefree = true;
+        }
+        
+        //Удаление картинок в центре
+        if(vybor>=0 && txGetAsyncKeyState (VK_DELETE))
+        {
+            centr_pic[vybor]  = centr_pic[nCenrtPic - 1];
+            nCenrtPic--;
+            vybor = -1;
+        }
 
 
         txEnd();
@@ -155,9 +231,12 @@ txDisableAutoPause();
     for(int i=0; i<count_pic; i++)
     {
         txDeleteDC (menu_pic[i].pic);
-        txDeleteDC (centr_pic[i].pic);
     }
 
+    for(int i=0; i<nCenrtPic; i++)
+    {
+        txDeleteDC (centr_pic[i].pic);
+    }
 
 return 0;
 }

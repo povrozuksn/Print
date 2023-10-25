@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 <tt>
-Build started on: <u>11-10-2023 at 20:31.58</u><br />
-Build ended on: <u>11-10-2023 at 20:32.02</u><p />
+Build started on: <u>25-10-2023 at 20:38.24</u><br />
+Build ended on: <u>25-10-2023 at 20:38.28</u><p />
 <b>-------------- Build: Debug in Project2023Yaroslav (compiler: GNU GCC Compiler)---------------</b><br />
 g++.bat -Wall -fexceptions  -g     -c C:\Users\root\source\repos\Project2023Yaroslav\main.cpp -o obj\Debug\main.o<br />
 ------------------------------------------------------------------------------------------------------<br />
@@ -18,7 +18,7 @@ C:\Users\root\source\repos\Project2023Yaroslav\main.cpp: In constructor 'Button:
 <font color="#0000ff">C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:3:8: warning: 'Button::name' should be initialized in the member initialization list [-Weffc++]</font><br />
 <font color="#0000ff">C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:3:8: warning: 'Button::category' should be initialized in the member initialization list [-Weffc++]</font><br />
 C:\Users\root\source\repos\Project2023Yaroslav\main.cpp: In function 'int main()':<br />
-C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:70:25: note: synthesized method 'Button::Button()' first required here <br />
+C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:74:25: note: synthesized method 'Button::Button()' first required here <br />
      Button btn[count_btn];<br />
                          ^<br />
 C:\Users\root\source\repos\Project2023Yaroslav\main.cpp: In constructor 'Picture::Picture()':<br />
@@ -34,15 +34,36 @@ C:\Users\root\source\repos\Project2023Yaroslav\main.cpp: In constructor 'Picture
 <font color="#0000ff">C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:30:8: warning: 'Picture::visible' should be initialized in the member initialization list [-Weffc++]</font><br />
 <font color="#0000ff">C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:30:8: warning: 'Picture::category' should be initialized in the member initialization list [-Weffc++]</font><br />
 C:\Users\root\source\repos\Project2023Yaroslav\main.cpp: In function 'int main()':<br />
-C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:76:31: note: synthesized method 'Picture::Picture()' first required here <br />
+C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:81:31: note: synthesized method 'Picture::Picture()' first required here <br />
      Picture menu_pic[count_pic];<br />
                                ^<br />
+<font color="#0000ff">C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:198:64: warning: conversion to 'int' from 'double' may alter its value [-Wconversion]</font><br />
+                 centr_pic[vybor].w_scr = centr_pic[vybor].w_scr*1.02;<br />
+                                                                ^<br />
+<font color="#0000ff">C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:199:64: warning: conversion to 'int' from 'double' may alter its value [-Wconversion]</font><br />
+                 centr_pic[vybor].h_scr = centr_pic[vybor].h_scr*1.02;<br />
+                                                                ^<br />
+<font color="#0000ff">C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:203:64: warning: conversion to 'int' from 'double' may alter its value [-Wconversion]</font><br />
+                 centr_pic[vybor].w_scr = centr_pic[vybor].w_scr*0.98;<br />
+                                                                ^<br />
+<font color="#0000ff">C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:204:64: warning: conversion to 'int' from 'double' may alter its value [-Wconversion]</font><br />
+                 centr_pic[vybor].h_scr = centr_pic[vybor].h_scr*0.98;<br />
+                                                                ^<br />
+<font color="#0000ff">C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:211:45: warning: conversion to 'int' from 'double' may alter its value [-Wconversion]</font><br />
+             centr_pic[vybor].x = txMouseX() - centr_pic[vybor].w_scr/2;<br />
+                                             ^<br />
+<font color="#0000ff">C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:212:45: warning: conversion to 'int' from 'double' may alter its value [-Wconversion]</font><br />
+             centr_pic[vybor].y = txMouseY() - centr_pic[vybor].h_scr/2;<br />
+                                             ^<br />
+<font color="#0000ff">C:\Users\root\source\repos\Project2023Yaroslav\main.cpp:69:10: warning: unused variable 'str' [-Wunused-variable]</font><br />
+     char str[20];<br />
+          ^<br />
 ------------------------------------------------------------------------------------------------------<br />
 Autosaving to the Git repository in C:/Users/root/source/repos/Project2023Yaroslav/.git-auto/... <br />
 g++.exe  -o bin\Debug\Project2023Yaroslav.exe obj\Debug\main.o     -mwindows<br />
 Output size is 2,19 MB<br />
 <font color="#0000ff">Process terminated with status 0 (0 minutes, 4 seconds)</font><br />
-<font color="#0000ff">0 errors, 12 warnings (0 minutes, 4 seconds)</font><br />
+<font color="#0000ff">0 errors, 19 warnings (0 minutes, 4 seconds)</font><br />
 </tt>
 </body>
 </html>
