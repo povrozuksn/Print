@@ -1,4 +1,10 @@
 #include "TXLib.h"
+#include <fstream>
+#include <iostream>
+#include <stdio.h>
+#include <dirent.h>
+
+using namespace std;
 
 struct Button
 {
@@ -33,6 +39,7 @@ struct Picture
     int y;
     int w_scr;
     int h_scr;
+    string adress;
     HDC pic;
     int w;
     int h;
@@ -52,7 +59,51 @@ struct Picture
     }
 };
 
+int get_w(string adress)
+{
+    char header[54];
+    ifstream bmp;
+    bmp.open(adress, ios::in | ios::binary);
+    bmp.read(header, 54);
+    int w = *(int *)&header[18];
 
+    return w;
+}
+
+int get_h(string adress)
+{
+    char header[54];
+    ifstream bmp;
+    bmp.open(adress, ios::in | ios::binary);
+    bmp.read(header, 54);
+    int h = *(int *)&header[22];
+
+    return h;
+}
+
+int readFolders(string adressDir, Picture menu_pic[], int count_pic)
+{
+    DIR *dir;
+    struct dirent *ent;
+    int X = 10;
+    int Y = 100;
+    if ((dir = opendir (adressDir.c_str())) != NULL)
+    {
+      while ((ent = readdir (dir)) != NULL)
+      {
+        if((string)ent->d_name != "." && (string)ent->d_name != "..")
+        {
+            menu_pic[count_pic].y = Y;
+            menu_pic[count_pic].x = X;
+            menu_pic[count_pic].adress = adressDir + (string)ent->d_name;
+            count_pic++ ;
+            Y += 150;
+        }
+      }
+      closedir (dir);
+    }
+    return count_pic;
+}
 
 
 int main()
@@ -63,7 +114,7 @@ txDisableAutoPause();
     txCreateWindow (1200, 700);
 
     int count_btn = 4;
-    int count_pic = 11;
+    int count_pic = 0;
     int vybor = -1;
     bool mousefree = true;
     char str[20];
@@ -73,23 +124,43 @@ txDisableAutoPause();
     //Кнопка
     Button btn[count_btn];
     btn[0] = {30, "Вид одежды", "Одежда"};
-    btn[1] = {200, "Эмблемы", "Эмблема"};
-    btn[2] = {370, "Логотипы", "Логотип"};
+    btn[1] = {200, "Эмблемы", "Эмблемы"};
+    btn[2] = {370, "Логотипы", "Логотипы"};
     btn[3] = {540, "Надписи", "Надписи"};
 
     //Картинка-меню
-    Picture menu_pic[count_pic];
-    menu_pic[0] = {10, 100,  94, 110, txLoadImage ("Pictures/Одежда/Майка.bmp"), 470, 550, false, "Одежда"};
-    menu_pic[1] = {10, 250,  94, 110, txLoadImage ("Pictures/Одежда/Футболка.bmp"), 470, 550, false, "Одежда"};
-    menu_pic[2] = {10, 100, 100, 100, txLoadImage ("Pictures/Эмблемы/Эмблема1.bmp"), 100, 100, false, "Эмблема"};
-    menu_pic[3] = {10, 250, 100, 100, txLoadImage ("Pictures/Эмблемы/Эмблема2.bmp"), 100, 100, false, "Эмблема"};
-    menu_pic[4] = {10, 400, 100, 100, txLoadImage ("Pictures/Эмблемы/Эмблема3.bmp"), 100, 100, false, "Эмблема"};
-    menu_pic[5] = {10, 100, 100, 100, txLoadImage ("Pictures/Логотипы/logo1.bmp"), 100, 100, false, "Логотип"};
-    menu_pic[6] = {10, 250, 100, 100, txLoadImage ("Pictures/Логотипы/logo2.bmp"), 100, 100, false, "Логотип"};
-    menu_pic[7] = {10, 400, 100, 100, txLoadImage ("Pictures/Логотипы/logo3.bmp"), 100, 100, false, "Логотип"};
-    menu_pic[8] = {10, 550, 100, 100, txLoadImage ("Pictures/Логотипы/logo4.bmp"), 100, 100, false, "Логотип"};
-    menu_pic[9] = {10, 100, 70, 60, txLoadImage ("Pictures/Надписи/Надпись1.bmp"), 350, 300, false, "Надписи"};
-    menu_pic[10] = {10, 200, 70, 60, txLoadImage ("Pictures/Надписи/Надпись2.bmp"), 350, 300, false, "Надписи"};
+    Picture menu_pic[100];
+
+    count_pic = readFolders("Pictures/Одежда/", menu_pic, count_pic);
+    count_pic = readFolders("Pictures/Эмблемы/", menu_pic, count_pic);
+    count_pic = readFolders("Pictures/Логотипы/", menu_pic, count_pic);
+    count_pic = readFolders("Pictures/Надписи/", menu_pic, count_pic);
+
+    for(int i=0; i<count_pic; i++)
+    {
+        menu_pic[i].pic = txLoadImage (menu_pic[i].adress.c_str());
+
+        menu_pic[i].w = get_w(menu_pic[i].adress);
+        menu_pic[i].h = get_h(menu_pic[i].adress);
+
+        menu_pic[i].visible = false;
+
+        string str = menu_pic[i].adress;
+        int pos1 = str.find("/");
+        int pos2 = str.find("/", pos1+1);
+        menu_pic[i].category = str.substr(pos1+1, pos2-(pos1+1));
+
+        if(menu_pic[i].category == "Одежда" || menu_pic[i].category == "Надписи")
+        {
+            menu_pic[i].w_scr = menu_pic[i].w/5;
+            menu_pic[i].h_scr = menu_pic[i].h/5;
+        }
+        else if(menu_pic[i].category == "Эмблемы" || menu_pic[i].category == "Логотипы")
+        {
+            menu_pic[i].w_scr = menu_pic[i].w;
+            menu_pic[i].h_scr = menu_pic[i].h;
+        }
+    }
 
     //Картинка в центре
     Picture centr_pic[100];
@@ -147,6 +218,7 @@ txDisableAutoPause();
                 centr_pic[nCenrtPic] = {200,
                                         100,
                                         menu_pic[i].w, menu_pic[i].h,
+                                        menu_pic[i].adress,
                                         menu_pic[i].pic,
                                         menu_pic[i].w, menu_pic[i].h,
                                         menu_pic[i].visible};
